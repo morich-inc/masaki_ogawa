@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>小川正樹 様｜morich キャリアご提案</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #E60012;
+    --red-light: #fff0f0;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-900: #111827;
+    --blue-50: #eff6ff;
+    --blue-100: #dbeafe;
+    --blue-600: #2563eb;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Sans JP', sans-serif; background: #f5f5f5; color: var(--gray-900); line-height: 1.75; }
+  header { background: #fff; border-bottom: 3px solid var(--red); padding: 14px 24px; display: flex; align-items: center; gap: 16px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
+  header img { height: 38px; }
+  header .htxt p:first-child { font-size: 12px; color: var(--gray-500); }
+  header .htxt p:last-child { font-size: 17px; font-weight: 900; }
+  .nav-bar { background: var(--gray-900); padding: 0 12px; overflow-x: auto; white-space: nowrap; }
+  .nav-bar a { display: inline-block; padding: 13px 18px; color: #ccc; text-decoration: none; font-size: 12px; font-weight: 700; border-bottom: 3px solid transparent; transition: all 0.2s; }
+  .nav-bar a:hover { color: #fff; border-bottom-color: var(--red); }
+  main { max-width: 860px; margin: 0 auto; padding: 28px 14px 64px; }
+  .card { background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); margin-bottom: 40px; overflow: hidden; border-top: 5px solid var(--red); }
+  .card-inner { padding: 28px 28px 36px; }
+  .badges { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 14px; }
+  .badge { font-size: 11px; font-weight: 700; padding: 3px 12px; border-radius: 999px; border: 2px solid var(--red); color: var(--red); background: var(--red-light); }
+  .badge-blue { border-color: var(--blue-600); color: var(--blue-600); background: var(--blue-50); }
+  .co-name { font-size: clamp(22px, 5vw, 34px); font-weight: 900; line-height: 1.2; margin-bottom: 5px; }
+  .co-url { font-size: 12px; margin-bottom: 22px; }
+  .co-url a { color: var(--blue-600); text-decoration: none; }
+  .co-url a:hover { text-decoration: underline; }
+  .overview { background: var(--blue-50); border: 1px solid var(--blue-100); border-radius: 8px; padding: 16px 20px; margin-bottom: 22px; }
+  .overview h3 { font-size: 10px; font-weight: 700; color: var(--blue-600); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 10px; }
+  .overview table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .overview tr { border-bottom: 1px solid var(--blue-100); }
+  .overview tr:last-child { border-bottom: none; }
+  .overview th { text-align: left; padding: 6px 14px 6px 0; color: var(--gray-600); font-weight: 700; width: 100px; vertical-align: top; white-space: nowrap; }
+  .overview td { padding: 6px 0; color: var(--gray-700); }
+  .highlight { background: var(--red-light); border: 2px solid var(--red); border-radius: 8px; padding: 16px 20px; margin-bottom: 22px; }
+  .highlight h3 { font-size: 13px; font-weight: 900; color: var(--red); margin-bottom: 8px; }
+  .highlight p, .highlight li { font-size: 13px; color: #7a0000; margin-bottom: 4px; }
+  .highlight ul { padding-left: 16px; }
+  .accordion { margin-bottom: 16px; }
+  .acc-header { display: flex; align-items: flex-start; justify-content: space-between; cursor: pointer; padding: 12px 16px; background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 8px; user-select: none; transition: background 0.15s; }
+  .acc-header:hover { background: var(--gray-100); }
+  .acc-header .label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--red); border-left: 3px solid var(--red); padding-left: 8px; margin-bottom: 5px; display: block; }
+  .acc-preview { font-size: 12px; color: var(--gray-500); line-height: 1.6; }
+  .acc-header-left { flex: 1; }
+  .acc-icon { width: 28px; height: 28px; flex-shrink: 0; margin-left: 12px; margin-top: 2px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--gray-200); font-size: 13px; transition: transform 0.25s, background 0.2s; }
+  .acc-header.open .acc-icon { transform: rotate(180deg); background: var(--red); color: #fff; }
+  .acc-header.open { border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-bottom-color: transparent; }
+  .acc-body { display: none; padding: 20px 18px; border: 1px solid var(--gray-200); border-top: none; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; font-size: 13px; color: var(--gray-700); line-height: 1.85; }
+  .acc-body.open { display: block; }
+  .acc-body p { margin-bottom: 10px; }
+  .acc-body ul { padding-left: 18px; margin-bottom: 10px; }
+  .acc-body li { margin-bottom: 6px; }
+  .job-wrap { border: 1px solid var(--gray-200); border-radius: 8px; overflow: hidden; margin-bottom: 16px; }
+  .job-header { background: var(--gray-900); color: #fff; padding: 14px 18px; display: flex; align-items: flex-start; justify-content: space-between; cursor: pointer; user-select: none; }
+  .job-title-text { font-size: 14px; font-weight: 900; margin-bottom: 3px; }
+  .job-preview { font-size: 11px; color: #aaa; line-height: 1.5; }
+  .job-icon { width: 26px; height: 26px; flex-shrink: 0; margin-left: 12px; margin-top: 2px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255,255,255,0.15); font-size: 12px; transition: transform 0.25s; }
+  .job-header.open .job-icon { transform: rotate(180deg); }
+  .job-body { display: none; padding: 20px 18px; font-size: 13px; color: var(--gray-700); line-height: 1.85; }
+  .job-body.open { display: block; }
+  .job-body p { margin-bottom: 10px; }
+  .job-body ul { padding-left: 18px; margin-bottom: 10px; }
+  .job-body li { margin-bottom: 6px; }
+  .job-section { font-size: 11px; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: .06em; margin: 14px 0 6px; }
+  .tag { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; margin-right: 5px; margin-bottom: 8px; }
+  .tag-must { background: var(--red); color: #fff; }
+  .tag-want { background: var(--gray-600); color: #fff; }
+  .meta-pills { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
+  .pill { font-size: 12px; font-weight: 700; padding: 4px 11px; border-radius: 999px; background: var(--gray-100); color: var(--gray-700); border: 1px solid var(--gray-200); }
+  .section-label { font-size: 11px; font-weight: 700; color: var(--gray-500); text-transform: uppercase; letter-spacing: .08em; border-left: 3px solid var(--red); padding-left: 8px; margin: 22px 0 10px; }
+  .links { display: flex; flex-wrap: wrap; gap: 8px; }
+  .lbtn { display: inline-flex; align-items: center; gap: 5px; padding: 7px 14px; border-radius: 6px; background: var(--gray-900); color: #fff; font-size: 12px; font-weight: 700; text-decoration: none; transition: background 0.2s; }
+  .lbtn:hover { background: var(--red); }
+  .lbtn-out { background: transparent; color: var(--gray-900); border: 2px solid var(--gray-200); }
+  .lbtn-out:hover { background: var(--gray-900); color: #fff; border-color: var(--gray-900); }
+  footer { text-align: center; padding: 28px 16px; font-size: 11px; color: var(--gray-500); border-top: 1px solid var(--gray-200); background: #fff; }
+  @media(max-width:600px){ .card-inner{ padding: 18px 14px 24px; } .overview th { width: 80px; } }
+</style>
+</head>
+<body>
+<header>
+  <img src="morich_logo.jpg" alt="morich">
+  <div class="htxt">
+    <p>morich キャリアご提案資料</p>
+    <p>小川正樹 様</p>
+  </div>
+</header>
+<nav class="nav-bar">
+  <a href="#k1">1. 株式会社リーディングマーク</a>
+  <a href="#k2">2. 株式会社カオナビ</a>
+  <a href="#k3">3. カイテク株式会社</a>
+  <a href="#k4">4. アキュイティー株式会社</a>
+  <a href="#k5">5. 株式会社Hajimari</a>
+</nav>
+<main>
+
+<div class="card" id="k1"><div class="card-inner">
+  <div class="badges"><span class="badge">オープンポジション</span><span class="badge badge-blue">未上場（N-3）</span></div>
+  <div class="co-name">株式会社リーディングマーク</div>
+  <div class="co-url"><a href="https://www.leadingmark.jp/" target="_blank">https://www.leadingmark.jp/</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>〒105-0001 東京都港区虎ノ門３丁目８−２１ 虎ノ門３３森ビル10階</td></tr><tr><th>上場区分</th><td>未上場（N-3）</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    <ul><li>AI時代の人的資本経営をリードする、社会性と事業性を兼ね備えた成長領域<br/>採用支援に留まらず、配置・定着・マネジメント・組織生産性向上まで踏み込む事業展開。人口減少により「採用する力」だけでなく「人が活躍し続ける組織づくり」が企業成長の重要テーマになる中、AI×組織心理学×HRTechで人的資本経営の中核課題に向き合える環境</li><li>独自データと組織心理学を強みにした、模倣困難性の高いプロダクト<br/>独自の組織心理研究所を擁し、学術的エビデンスと累計200万人超の性格・内面データを掛け合わせたプロダクトを展開。汎用AIでは代替しにくい「人の内面理解」を起点に、AIが上司・部下双方へ次に取るべき行動を提示するなど、マネジメントの科学化・自動支援に挑戦できるフェーズ</li><li>IPO準備と事業拡大の両方に関われる、ハイクラス人材向けの裁量ある環境<br/>社員数約200名規模へ拡大し、通期80名前後の採用計画を進める中、コーポレートはIPOに向けた各職種強化、事業側はCS・FS・エンタープライズセールスを中心に拡大中。ガバナンス強化、事業推進体制の高度化、組織基盤づくりなど、上場前後の経営課題に近い立場で関与できる希少なタイミング</li><li>「職種責任者」ではなく「事業家」として成長できるカルチャー<br/>同社が掲げる事業家とは、事業を創り、作り、売る全工程に責任を持ち、組織づくりと事業利益の最大化まで担う人材。実際にリクルートグループ執行役員、HR企業副社長、2度の上場経験を持つCFOなど、ハイクラス人材の採用実績もあり、専門領域を超えてP&L・組織・事業成長に踏み込むキャリア形成が可能な環境</li></ul>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">HRTech適性検査クラウド「ミキワメAI」を中心に、採用・配置・定着・マネジメント支援までを一気通貫で展開するHRTech企業です。独自の「組織心理研究所」を擁し、学術的エビデンスに基づくプロダクト開発を行っている点が特徴です。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>HRTech適性検査クラウド「ミキワメAI」を中心に、採用・配置・定着・マネジメント支援までを一気通貫で展開するHRTech企業です。独自の「組織心理研究所」を擁し、学術的エビデンスに基づくプロダクト開発を行っている点が特徴です。主力の「ミキワメAI 適性検査」は、企業ごとの活躍人材データをもとに候補者の採用マッチ度を可視化するサービスで、累計利用企業数は6,000社、累計受検者数は200万人以上に拡大。2025年2月には16.2億円の資金調達を実施し、累計資金調達額は30億円を突破しています。</p><p>現在は「ONE LM 2029」のもと、AI時代におけるNo.1 HRプラットフォームの実現を目指し、人の特性・状態・置かれた状況を可視化し、離職を減らし活躍を増やすプラットフォームへ進化中です。人口減少により新規採用だけでは組織成長が難しくなる中、「今いる社員が長く活躍できる組織づくり」を支援する社会的意義の高い事業領域です。今後はSaaS・AIエージェントに加え、RPO・組織コンサル・研修などのプロフェッショナルサービス領域も視野に入れており、IPO準備を進めながら、コーポレート体制・事業推進体制の強化を進める成長フェーズです。</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 オープンポジション</div>
+          <div class="job-preview">あなたの経験・志向・強みを最大限に活かし、リーディングマークの成長を加速させる「未来の事業家候補」</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p><strong>── あなたの経験と情熱を武器に、急成長企業の未来を創る ──</strong></p><p>この4年で売上・従業員数が共に5倍という急成長を遂げたリーディングマーク。累計200万人が受検し、5,000社以上が導入するミキワメAIブランドは、今や日本を代表する企業の組織変革を支えるインフラとなりました。そして今、累計36億円の資金調達を完了し、IPOという新たなステージへと歩みを進めています。</p><p>あなたの経験・志向・強みを最大限に活かし、リーディングマークの成長を加速させる「未来の事業家候補」として、ビジネス・プロダクト・コーポレートなどあらゆる領域で、会社の未来を創る仕事に挑みます。営業、マーケティング、カスタマーサクセス、プロダクト推進、イベント企画、採用、人事、経営企画…具体的な役割は、選考プロセスであなたと対話しながら決定します。</p><p><strong>必須要件：</strong></p><ul><li><span class='tag tag-must'>MUST</span> 弊社のミッションへの共感、バリューへのマッチ</li><li><span class='tag tag-must'>MUST</span> ベンチャー企業の環境に対応可能な柔軟性や能動性</li></ul><p><strong>歓迎要件：</strong></p><ul><li><span class='tag tag-want'>WANT</span> HR、営業、マーケティング、カスタマーサクセスなどの実務経験</li><li><span class='tag tag-want'>WANT</span> マネジメント経験(チームリーダー、プロジェクトリーダーなど)</li><li><span class='tag tag-want'>WANT</span> HR Tech、SaaS、コンサルティング業界での経験</li><li><span class='tag tag-want'>WANT</span> 複数のステークホルダーを巻き込んだプロジェクト推進経験</li></ul>
+        <div class="meta-pills"><span class="pill">📍 東京</span><span class="pill">🏠 ハイブリッド勤務</span><span class="pill">✅ 副業可</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://www.leadingmark.jp/" target="_blank">🏢 企業サイト</a></div>
+</div></div>
+
+<div class="card" id="k2"><div class="card-inner">
+  <div class="badges"><span class="badge">CXOオープンポジション</span><span class="badge badge-blue">未上場（非公開化）</span></div>
+  <div class="co-name">株式会社カオナビ</div>
+  <div class="co-url"><a href="https://www.kaonavi.jp/" target="_blank">https://www.kaonavi.jp/</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>〒150-6138　東京都渋谷区渋谷2-24-12 渋谷スクランブルスクエア 38F</td></tr><tr><th>上場区分</th><td>未上場（非公開化）</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    ★社長リレーション<br/>★役員とのカジュアル面談スタート可<br/>★過去入社実績アリ
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">社員のスキルや経験などを一元管理し、人材戦略に活用する「タレントマネジメントシステム」を提供するSaaS企業です。提供するサービス「カオナビ」は、トヨタやみずほ銀行などの大手企業や、経済産業省などの中央省庁や地方自治体など、業種業態問わず多くの企業・団体にご利用いただいています。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>社員のスキルや経験などを一元管理し、人材戦略に活用する「タレントマネジメントシステム」を提供するSaaS企業です。提供するサービス「カオナビ」は、トヨタやみずほ銀行などの大手企業や、経済産業省などの中央省庁や地方自治体など、業種業態問わず多くの企業・団体にご利用いただき、2025年9月末時点で利用企業数4,500社以上に導入いただいています。</p><p>2019年に東証グロース市場に上場しましたが、2025年6月には、米投資ファンドのカーライル・グループによる買収を経て、非公開化しました。この非公開化の最大の目的は、5年後に現在の数倍の時価総額での再上場を目指すことにあります。</p><p>現在のタレントマネジメントだけでなく、給与・労務・採用・エンゲージメントといった周辺領域へのサービス展開を加速させる「マルチプロダクト戦略」AIを掛け合わせることで、人の働き方そのものに新しい提案をしていく」という理想を掲げており、これらの成長投資は新規開発とM&Aの両輪で進められ、カーライルの追加支援も受けながら、「上場時にはできなかった規模の大胆な成長投資」を行っていく予定です。</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 【Confidential】CXO（オープンポジション）</div>
+          <div class="job-preview">CXOポストのオープンポジション</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p>CXOポストのオープンポジションになります。</p><p>ご経験やご志向に合わせてポジションメイクさせていただきます。</p>
+        <div class="meta-pills"><span class="pill">📍 東京</span><span class="pill">🏠 フルリモート可</span><span class="pill">✅ 副業可</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://www.kaonavi.jp/" target="_blank">🏢 企業サイト</a></div>
+</div></div>
+
+<div class="card" id="k3"><div class="card-inner">
+  <div class="badges"><span class="badge">プロダクトマネージャー</span><span class="badge badge-blue">未上場（N-1）</span></div>
+  <div class="co-name">カイテク株式会社</div>
+  <div class="co-url"><a href="https://corp.caitech.co.jp/" target="_blank">https://corp.caitech.co.jp/</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>〒160-0022 東京都新宿区新宿1丁目23番1号 THE PORTAL 新宿御苑 2F</td></tr><tr><th>上場区分</th><td>未上場（N-1）</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    ★IPO準備フェーズ：N-1期<br/>★社長リレーション
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">「2050年に世界一幸せな超高齢社会をつくる」というビジョンのもと、介護・医療領域の人材不足解消に挑む2018年設立のHRテック企業で、介護・医療・看護領域に特化した単発・スポットワークマッチングサービス「カイテク」を展開しています。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>「2050年に世界一幸せな超高齢社会をつくる」というビジョンのもと、介護・医療領域の人材不足解消に挑む2018年設立のHRテック企業で、介護・医療・看護領域に特化した単発・スポットワークマッチングサービス「カイテク」を展開しています。慢性的な人材不足という社会構造課題に対し、有資格者限定という独自モデルでアプローチしている点や勤務後5分以内の即時ペイメントや、足りないシフト枠をスポットワークと連携する仕組みなど、現場起点のプロダクト開発を進め、導入事業所は約2.1万、アプリDLは約110万人まで拡大。</p><p>直近3期連続黒字、営業利益率10％超と、成長性と収益性を両立している点も特徴でIPOを目指しています。今後は介護・医療周辺領域への展開や新規事業、M&Aも視野に入れ、日本で成功モデルを築いた先の海外展開も見据えています。エリア展開も進行中で、介護人材市場の流動化を促進するインフラとしてのポジションを築きつつあります。</p><p>デロイト トーマツ グループが2026年1月に発表したテクノロジー・メディア・通信業界における成長率ランキング「Technology Fast 50 2025 Japan」において、過去3決算期の収益（売上高）に基づく成長率1位を獲得されています。</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 プロダクトマネージャー（プロダクトオーナー候補）</div>
+          <div class="job-preview">介護・看護のスポットワークリング『カイテク』のプロダクトオーナー候補として、プロダクトビジョン・企画・グロースハックを担当</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p>介護・看護のスポットワークリング『カイテク』のプロダクトオーナー候補として以下業務を担当いただきます</p><ul><li>プロダクトビジョン、ロードマップの設計</li><li>市場・競合調査、顧客インタビューなどを通じたプロダクト企画</li><li>開発チームとの連携およびプロジェクトマネジメント</li><li>グロースハック業務（定量定性分析、施策設計、高速PDCA）</li><li>（将来的に）プロダクトマネジメントチームの組成、マネジメント</li></ul><p><strong>必須スキル：</strong></p><ul><li><span class='tag tag-must'>MUST</span> 自社プロダクトのプロダクトマネジメント経験</li><li><span class='tag tag-must'>MUST</span> プロダクトの課題を数値化できるデータ分析力</li><li><span class='tag tag-must'>MUST</span> 分析（定量・定性）、企画、A/Bテストなど一連のグロースハック実務の経験がある</li><li><span class='tag tag-must'>MUST</span> ビジネス、エンジニア、デザイナーとの開発推進経験</li></ul><p><strong>歓迎スキル：</strong></p><ul><li><span class='tag tag-want'>WANT</span> 複数施策の組み合わせKPI/KGIを大きく改善した経験</li><li><span class='tag tag-want'>WANT</span> A/Bテストやその他の効果測定手法に関する知識・経験がある</li><li><span class='tag tag-want'>WANT</span> 社内DXに関する知識や実践経験(業務プロセスの効率化や自動化の推進)</li><li><span class='tag tag-want'>WANT</span> プログラミングやシステム設計の基礎知識(エンジニアリングチームと円滑に連携できる)</li><li><span class='tag tag-want'>WANT</span> 介護医療業界トレンドや競合分析に精通</li></ul>
+        <div class="meta-pills"><span class="pill">📍 東京</span><span class="pill">🏠 ハイブリッド勤務</span><span class="pill">✅ 副業可（条件あり）</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://corp.caitech.co.jp/" target="_blank">🏢 企業サイト</a></div>
+</div></div>
+
+<div class="card" id="k4"><div class="card-inner">
+  <div class="badges"><span class="badge">CPO候補</span><span class="badge badge-blue">未上場</span></div>
+  <div class="co-name">アキュイティー株式会社</div>
+  <div class="co-url"><a href="https://www.acuity-inc.co.jp/" target="_blank">https://www.acuity-inc.co.jp/</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>〒108-0075 東京都港区港南1丁目2番70号</td></tr><tr><th>上場区分</th><td>未上場</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">2015年設立、「視えることは、変えられる。」をスローガンに掲げ、画像処理・AI・センサー技術を駆使して産業界の課題解決に挑む注目のセンシングテック企業です。創業以来、モーションキャプチャ技術の先駆者として歩み、2018年からAI事業に本格参入。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>2015年設立、「視えることは、変えられる。」をスローガンに掲げ、画像処理・AI・センサー技術を駆使して産業界の課題解決に挑む注目のセンシングテック企業です。創業以来、モーションキャプチャ技術の先駆者として歩み、2018年からAI事業に本格参入。計測機器や検査機器など、さまざまなシステム開発・製造・販売を行っています。</p><p>複数台のカメラで対象を囲い、対象の位置をトラッキングする光学式モーションキャプチャ「OptiTrack」や、解析からレポート出力まで行う「SKYCOM」など、３次元測定・計測、工数短縮・品質の向上、現場で役立つシステムやソリューションを提供。10の産業分野（漁業、建設業、製造業、電気・ガス・熱供給・水道業、情報通信業、運輸業、学術研究、生活関連サービス業、医療福祉、サービス業）で、1,000件を超えるライセンス実績を有しています。</p><p>主要納入先には、トヨタ自動車株式会社、日産自動車株式会社、パナソニック株式会社、富士通株式会社、ソニー株式会社など、多数の大手企業が名を連ねています。2021年に第二創業期として、新たなMission「世界をもっとアキュイティーに。」を掲げ、事業拡大を進めています。</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 CPO候補（Business Development）</div>
+          <div class="job-preview">「動きをデータ化する」独自技術を広い市場に展開し事業を最大化する、フィールドエンジニア部門の責任者</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p>「動きをデータ化する」独自技術を持つ同社は、自動車メーカー・建設現場向けのBtoBシステム提供を主軸に、BtoC向け新規事業化も進めています。営業体制の骨格が固まりつつある一方で、「動きをデータ化する」というニッチで尖った技術を、いかに広い市場に展開し事業を最大化していくか課題となっています。</p><p><strong>業務内容：</strong></p><ul><li>フィールドエンジニア部門の統括マネジメント</li><li>プロダクト戦略の立案・実行（ビジネスデベロップメント）</li><li>マルチプロダクト戦略・ゼロイチ開発の推進</li><li>BtoC向け新規事業の推進</li></ul><p><strong>必須スキル：</strong></p><ul><li><span class='tag tag-must'>MUST</span> プロダクトマネージャー（PdM）またはプロダクトマーケティングの実務経験</li><li><span class='tag tag-must'>MUST</span> エンジニアと技術要件定義の上流を主導できる、エンジニアリングへの一定の理解</li><li><span class='tag tag-must'>MUST</span> チームマネジメントの経験</li></ul><p><strong>歓迎スキル：</strong></p><ul><li><span class='tag tag-want'>WANT</span> スピード感あるベンチャー・スタートアップ環境での意思決定・実行経験</li><li><span class='tag tag-want'>WANT</span> エンタープライズ向けBtoB SaaSのプロダクトマネジメント（PdM）または事業開発経験</li><li><span class='tag tag-want'>WANT</span> ベンチャー企業でのCPO・プロダクト責任者としてのゼロイチ経験</li><li><span class='tag tag-want'>WANT</span> マルチプロダクト戦略の立案・実行経験</li><li><span class='tag tag-want'>WANT</span> 製造業・建設等の業界向けプロダクト経験</li></ul>
+        <div class="meta-pills"><span class="pill">📍 東京</span><span class="pill">🏠 基本出社</span><span class="pill">✅ 副業可（条件あり）</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://www.acuity-inc.co.jp/" target="_blank">🏢 企業サイト</a></div>
+</div></div>
+
+<div class="card" id="k5"><div class="card-inner">
+  <div class="badges"><span class="badge">CTO候補</span><span class="badge badge-blue">未上場（N-4以前）</span></div>
+  <div class="co-name">株式会社Hajimari</div>
+  <div class="co-url"><a href="https://www.hajimari.inc/" target="_blank">https://www.hajimari.inc/</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>〒150-0043 東京都渋谷区道玄坂1-16-10渋谷DTビル6階(総合受付)・9階</td></tr><tr><th>上場区分</th><td>未上場（N-4以前）</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    ★社長リレーション<br/>★カジュアル面談スタート可<br/>★過去複数名入社実績アリ
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">創業10期目を迎え、平均成長率156％という圧倒的なスピードでHR業界を席巻するプロシェアリング市場のリーディングカンパニーです。「自立した人材を増やし、人生の幸福度を高める」という揺るぎないビジョンのもと、フリーランス支援から最先端SaaS事業まで14以上の事業を多角展開。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>創業10期目を迎え、平均成長率156％という圧倒的なスピードでHR業界を席巻するプロシェアリング市場のリーディングカンパニーです。「自立した人材を増やし、人生の幸福度を高める」という揺るぎないビジョンのもと、フリーランス支援から最先端SaaS事業まで14以上の事業を多角展開。2024年度には売上100億円を突破し、2026年度には売上210億円、そして2035年には売上1,000億円・従業員1,000名体制を目指す壮大なロードマップの渦中にあります。</p><p>社名には「一歩踏み出す覚悟がある限り、人はいつでも新しい人生を始められる」という信念が込められており、全メンバーが自らの人生の主導権を握り、挑戦を続けています。独自のテクノロジーとGoogleとの強固なアライアンスを武器に、未開拓の市場を切り拓く同社は、まさにマーケットリーダーとしての地位を盤石にし、さらなる高みへスケールするフェーズです。</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 CTO候補（VPoE）</div>
+          <div class="job-preview">売上1,000億円を目指すHajimariの第2創業。Google出身CTOと共に技術組織を牽引する「CTO候補（VPoE）」</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p><strong>ミッション：「ビジネスをハックし、技術で勝てるプロダクト・組織を創り上げる」</strong></p><p>現CTOの岡田（元Google）が経営全般および技術戦略の羅針盤を担う一方で、本ポジションは「プロダクトのデリバリー責任者」および「エンジニアリング組織の象徴」として活躍していただきます。ビジネスサイドと対等に議論しながら、最適なアーキテクチャ設計と組織開発を主導することがミッションです。</p><p><strong>業務内容：</strong></p><ul><li>技術戦略の策定・実行：全社および各事業における技術選定、アーキテクチャ設計の監督。</li><li>VPoE/エンジニアリングマネジメント：年間数十名規模で拡大する組織の採用・評価・育成スキームの構築。</li><li>新規プロダクトの高速立ち上げ：ビジネスサイドの構想をテクノロジーで具現化し、爆速でPMF（プロダクトマーケットフィット）まで導く。</li><li>テックブランディングの推進：白石氏等と連携し、TechFeed等の資産を活かして、国内トップクラスのエンジニアが集まる技術広報戦略を牽引。</li><li>TUKURUS事業の技術支援：クライアントのDX支援における技術水準の担保と、所属エンジニアの市場価値向上。</li></ul><p><strong>必須スキル：</strong></p><ul><li><span class='tag tag-must'>MUST</span> Webプロダクトの多角的な開発・運用経験（自らコードを書き、複雑なビジネスロジックを支えた経験）</li><li><span class='tag tag-must'>MUST</span> 20名以上のエンジニア組織マネジメント経験（採用、育成、評価、文化醸成を主導した実績）</li><li><span class='tag tag-must'>MUST</span> ビジネスサイドとの高度な合意形成能力（経営指標・P/Lを理解し、技術を事業価値に変換できる力）</li><li><span class='tag tag-must'>MUST</span> 「技術×ビジネス」の接続能力（ビジネス上の難題を、シンプルな技術的解決策に落とし込む構造化能力）</li><li><span class='tag tag-must'>MUST</span> 仕組み化によるスケール能力（数十名規模でも品質とスピードが両立する開発プロセスの設計力）</li></ul><p><strong>歓迎スキル：</strong></p><ul><li><span class='tag tag-want'>WANT</span> 新規事業のゼロイチ立ち上げ経験</li><li><span class='tag tag-want'>WANT</span> M&A後の技術組織統合（PMI）経験</li><li><span class='tag tag-want'>WANT</span> 著名なOSS活動やコミュニティでの発信・登壇実績</li></ul>
+        <div class="meta-pills"><span class="pill">📍 東京</span><span class="pill">🏠 ハイブリッド勤務</span><span class="pill">✅ 副業可（条件あり）</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://www.hajimari.inc/" target="_blank">🏢 企業サイト</a></div>
+</div></div>
+</main>
+<footer>
+  <p>本資料はmorichが小川正樹 様のためにご用意した個人情報を含む機密資料です。無断転用・転載はご遠慮ください。</p>
+  <p style="margin-top:6px;">© 株式会社morich</p>
+</footer>
+<script>
+  function toggleAcc(header) {
+    const body = header.nextElementSibling;
+    header.classList.toggle('open');
+    body.classList.toggle('open');
+  }
+  function toggleJob(header) {
+    const body = header.nextElementSibling;
+    header.classList.toggle('open');
+    body.classList.toggle('open');
+  }
+</script>
+</body>
+</html>
